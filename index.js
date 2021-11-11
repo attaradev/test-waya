@@ -63,9 +63,11 @@ const getSubsidiaries = (company, subs = []) => {
     .map((c) => c.id);
 
   if (subsidiaries.length == 0) {
+    // return provided subsidiaries
     return subs;
   }
 
+  // recursively get subsidiaries for subsidiaries
   return subsidiaries.reduce((acc, company) => {
     return acc.concat(getSubsidiaries(company, acc));
   }, subsidiaries);
